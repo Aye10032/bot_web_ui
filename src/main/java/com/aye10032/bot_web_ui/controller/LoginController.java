@@ -5,6 +5,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.HttpSession;
+
 /**
  * @program: bot_web_ui
  * @className: LoginController
@@ -20,13 +22,21 @@ public class LoginController {
     public String login(
             @RequestParam("username") String username,
             @RequestParam("password") String password,
-            Model model){
-        if (username.equals("aye10032")&&password.equals("114514")) {
+            Model model, HttpSession session) {
+
+        if (username.equals("aye10032") && password.equals("114514")) {
+            session.setAttribute("loginuser", username);
             return "redirect:/index.html";
-        }else {
-            model.addAttribute("msg","error");
+        } else {
+            model.addAttribute("msg", "密码错误");
             return "login";
         }
+    }
+
+    @RequestMapping("/logout")
+    public String logout(HttpSession session){
+        session.invalidate();
+        return "redirect:/";
     }
 
 }

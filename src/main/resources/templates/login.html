@@ -35,15 +35,14 @@
                 <input type="password" class="form-control" id="InputPassword" name="password" placeholder="Password">
             </div>
         </div>
-        <div style="height: 50px"></div>
-        <div class="row">
-            <div class="col-md-2 offset-md-5">
-                <button type="submit" class="btn btn-info btn-lg btn-block">登录</button>
+        <div style="height: 50px; line-height: 50px" class="row">
+            <div class="col-md-2 offset-md-5" style="text-align: center">
+                <p style="color: red;" th:text="${msg}" th:if="${! #strings.isEmpty(msg)}"></p>
             </div>
         </div>
         <div class="row">
             <div class="col-md-2 offset-md-5">
-                <p style="color: red" th:text="${msg}" th:if="${! #strings.isEmpty(msg)}"></p>
+                <button type="submit" class="btn btn-info btn-lg btn-block">登录</button>
             </div>
         </div>
     </div>
