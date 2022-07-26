@@ -7,48 +7,55 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- Loading Bootstrap -->
-    <link href="css/vendor/bootstrap.min.css" rel="stylesheet">
+    <link th:href="@{css/vendor/bootstrap.min.css}" rel="stylesheet">
     <!-- Loading Flat UI Pro -->
-    <link href="css/flat-ui.css" rel="stylesheet">
+    <link th:href="@{css/flat-ui.css}" rel="stylesheet">
 
-    <link href="css/my-style.css" rel="stylesheet">
+    <link th:href="@{css/my-style.css}" rel="stylesheet">
 </head>
 <body>
 
-<div class="container">
-    <div class="div-height"></div>
-    <div class="row">
-        <div class="col-md-1 offset-md-4">用户名</div>
-    </div>
-    <div class="row">
-        <div class="col-md-4 offset-md-4">
-            <input type="text" class="form-control" id="InputUserName" placeholder="UserName">
+<form class="form-signin" th:action="@{/login}">
+    <div class="container">
+        <div class="div-height"></div>
+        <div class="row">
+            <div class="col-md-1 offset-md-4">用户名</div>
+        </div>
+        <div class="row">
+            <div class="col-md-4 offset-md-4">
+                <input type="text" class="form-control" id="InputUserName" name="username" placeholder="UserName">
+            </div>
+        </div>
+        <div class="div-small"></div>
+        <div class="row">
+            <div class="col-md-1 offset-md-4">密码</div>
+        </div>
+        <div class="row">
+            <div class="col-md-4 offset-md-4">
+                <input type="password" class="form-control" id="InputPassword" name="password" placeholder="Password">
+            </div>
+        </div>
+        <div style="height: 50px"></div>
+        <div class="row">
+            <div class="col-md-2 offset-md-5">
+                <button type="submit" class="btn btn-info btn-lg btn-block">登录</button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-2 offset-md-5">
+                <p style="color: red" th:text="${msg}" th:if="${! #strings.isEmpty(msg)}"></p>
+            </div>
         </div>
     </div>
-    <div class="div-small"></div>
-    <div class="row">
-        <div class="col-md-1 offset-md-4">密码</div>
-    </div>
-    <div class="row">
-        <div class="col-md-4 offset-md-4">
-            <input type="password" class="form-control" id="InputPassword" placeholder="Password">
-        </div>
-    </div>
-    <div style="height: 50px"></div>
-    <div class="row">
-        <div class="col-md-2 offset-md-5">
-            <button type="button" class="btn btn-info btn-lg btn-block">登录</button>
-        </div>
-    </div>
-</div>
+</form>
 
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="scripts/jquery-3.3.1.js"></script>
+<script th:src="@{scripts/jquery-3.3.1.js}"></script>
 <!-- Bootstrap 4 requires Popper.js -->
-<script src="scripts/popper.min.js"></script>
+<script th:src="@{scripts/popper.min.js}"></script>
 
-<script src="scripts/flat-ui.js"></script>
+<script th:src="@{scripts/flat-ui.js}"></script>
 
-<script src="scripts/application.js"></script>
+<script th:src="@{scripts/application.js}"></script>
 </body>
 </html>
