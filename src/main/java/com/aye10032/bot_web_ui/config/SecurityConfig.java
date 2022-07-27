@@ -1,20 +1,26 @@
 package com.aye10032.bot_web_ui.config;
 
+import com.aye10032.bot_web_ui.dao.UserDao;
+import com.aye10032.bot_web_ui.entity.User;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
-import org.springframework.security.core.userdetails.User;
+import org.springframework.security.config.ldap.LdapBindAuthenticationManagerFactory;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+import org.springframework.security.provisioning.JdbcUserDetailsManager;
 import org.springframework.security.web.DefaultSecurityFilterChain;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import javax.servlet.Filter;
 import java.util.ArrayList;
@@ -29,7 +35,9 @@ import java.util.List;
  * @date: 2022/7/26 下午 8:57
  */
 @Configuration
-public class SecurityConfig {
+public class SecurityConfig{
+
+
 
     @Bean
     PasswordEncoder passwordEncoder() {
@@ -37,10 +45,8 @@ public class SecurityConfig {
     }
 
     @Bean
-    UserDetailsService userDetailsService() {
-        InMemoryUserDetailsManager users = new InMemoryUserDetailsManager();
-        users.createUser(User.withUsername("aye10032").password(passwordEncoder().encode("114514")).roles("admin").build());
-        return users;
+    BotUserDetailService userDetailsService() {
+        return new BotUserDetailService();
     }
 
     @Bean
