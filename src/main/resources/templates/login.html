@@ -15,7 +15,7 @@
 </head>
 <body>
 
-<form class="form-signin" method="post" th:action="@{/login}">
+<form class="form-signin" method="post" th:action="@{/user/login}">
     <div class="container">
         <div class="div-height"></div>
         <div class="row">
@@ -37,7 +37,8 @@
         </div>
         <div style="height: 50px; line-height: 50px" class="row">
             <div class="col-md-2 offset-md-5" style="text-align: center">
-                <p style="color: red;" th:text="${msg}" th:if="${! #strings.isEmpty(msg)}"></p>
+                <p class="text-danger" th:if="${param.error}">用户名或密码错误</p>
+                <p class="text-info" th:if="${param.logout}">注销成功</p>
             </div>
         </div>
         <div class="row">

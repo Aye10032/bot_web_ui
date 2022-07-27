@@ -46,10 +46,19 @@ public class SecurityConfig {
     @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .mvcMatchers("/css/**", "/fonts/**", "/images/**", "/scripts/**", "/login", "/login.html").permitAll()
+                .mvcMatchers("/css/**", "/fonts/**", "/images/**", "/scripts/**", "/login", "/user/login").permitAll()
                 .anyRequest().authenticated()
                 .and()
-                .formLogin().loginPage("/login.html").loginProcessingUrl("/login")
+                .formLogin().loginPage("/login").loginProcessingUrl("/user/login")
+                .usernameParameter("username").passwordParameter("password")
+                .defaultSuccessUrl("/index")
+                .failureUrl("/login?error=true")
+                .and()
+                .logout()
+                .logoutUrl("/logout")
+                .invalidateHttpSession(true)
+                .clearAuthentication(true)
+                .logoutSuccessUrl("/login?logout=true")
                 .and()
                 .csrf().disable();
 

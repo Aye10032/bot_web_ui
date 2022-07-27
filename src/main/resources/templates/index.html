@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="utf-8">
     <title>Communism Bot</title>
@@ -36,7 +36,7 @@
         <div class="collapse navbar-collapse justify-content-end">
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="color: #00a1cb">[[${session.loginuser}]] <b class="caret"></b></a>
+                    <a href="#" class="dropdown-toggle text-info" data-toggle="dropdown" sec:authentication="principal.username"><b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li><a th:href="@{/logout}">注销</a></li>
                     </ul>
