@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>登录</title>
@@ -15,7 +15,7 @@
 </head>
 <body>
 
-<form class="form-signin" th:action="@{/login}">
+<form class="form-signin" method="post" th:action="@{/login}">
     <div class="container">
         <div class="div-height"></div>
         <div class="row">

@@ -18,25 +18,9 @@ import javax.servlet.http.HttpSession;
 @Controller
 public class LoginController {
 
-    @RequestMapping("/login")
-    public String login(
-            @RequestParam("username") String username,
-            @RequestParam("password") String password,
-            Model model, HttpSession session) {
-
-        if (username.equals("aye10032") && password.equals("114514")) {
-            session.setAttribute("loginuser", username);
-            return "redirect:/index.html";
-        } else {
-            model.addAttribute("msg", "密码错误");
-            return "login";
-        }
-    }
-
-    @RequestMapping("/logout")
-    public String logout(HttpSession session){
-        session.invalidate();
-        return "redirect:/";
-    }
+//    @RequestMapping("/login")
+//    public String login() {
+//        return "redirect:/index.html";
+//    }
 
 }
