@@ -4,6 +4,7 @@ import com.aye10032.bot_web_ui.dao.UserDao;
 import com.aye10032.bot_web_ui.entity.Role;
 import com.aye10032.bot_web_ui.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -20,7 +21,7 @@ import java.util.List;
  * @author: Aye10032
  * @date: 2022/7/27 下午 4:35
  */
-@Component
+
 public class BotUserDetailService implements UserDetailsService {
     @Autowired
     private UserDao dao;
@@ -31,6 +32,7 @@ public class BotUserDetailService implements UserDetailsService {
         if (ObjectUtils.isEmpty(user)) throw new UsernameNotFoundException("用户名不正确");
         List<Role> roles = dao.getRolesByUid(user.getId());
         user.setRoles(roles);
+        System.out.println(user.toString());
         return user;
     }
 }

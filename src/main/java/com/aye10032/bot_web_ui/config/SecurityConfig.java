@@ -1,17 +1,18 @@
 package com.aye10032.bot_web_ui.config;
 
 import com.aye10032.bot_web_ui.dao.UserDao;
-import com.aye10032.bot_web_ui.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.config.ldap.LdapBindAuthenticationManagerFactory;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
@@ -36,15 +37,16 @@ import java.util.List;
  * @date: 2022/7/26 下午 8:57
  */
 @Configuration
-public class SecurityConfig{
+public class SecurityConfig {
 
     @Bean
-    public static PasswordEncoder passwordEncoder() {
-        return NoOpPasswordEncoder.getInstance();
+    PasswordEncoder passwordEncoder(){
+        return new BCryptPasswordEncoder();
     }
 
+
     @Bean
-    BotUserDetailService userDetailsService() {
+    BotUserDetailService botUserDetailService() {
         return new BotUserDetailService();
     }
 
