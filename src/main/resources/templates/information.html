@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="utf-8">
+    <title>Communism Bot</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Loading Bootstrap -->
+    <link th:href="@{css/vendor/bootstrap.min.css}" rel="stylesheet">
+    <!-- Loading Flat UI Pro -->
+    <link th:href="@{css/flat-ui.css}" rel="stylesheet">
+
+    <link th:href="@{css/my-style.css}" rel="stylesheet">
+</head>
+<body>
+
+<div th:replace="~{component::topbar}"></div>
+
+<div class="container">
+
+</div>
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script th:src="@{scripts/jquery-3.3.1.js}"></script>
+<!-- Bootstrap 4 requires Popper.js -->
+<script th:src="@{scripts/popper.min.js}"></script>
+
+<script th:src="@{scripts/flat-ui.js}"></script>
+
+<script th:src="@{scripts/application.js}"></script>
+
+<script>
+    $(document).ready(function () {
+        $('select[name="my-select"]').select2({dropdownCssClass: 'my-select'});
+    });
+</script>
+</body>
+</html>

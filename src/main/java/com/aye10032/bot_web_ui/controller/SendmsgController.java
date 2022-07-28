@@ -15,14 +15,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
  */
 
 @Controller
-public class IndexController {
+public class SendmsgController {
 
-    @RequestMapping({"/index","/"})
+    @RequestMapping({"/sendmsg"})
     public String index(){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         System.out.println(authentication.getPrincipal());
         System.out.println(authentication.getAuthorities());
-        return "index";
+        return "sendmsg";
     }
 
 }
